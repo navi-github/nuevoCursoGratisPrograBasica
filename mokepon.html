@@ -1,51 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mokepon</title>
-    <script src="/mokepon/mokepon.js">
-    </script>
-</head>
-<body>
-    <h1>MOKEPON!! 🔥💧🌱</h1>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mokepon</title>
+    </head>
+    <body>
+        <h1>MOKEPON!! 🔥💧🌱</h1>
 
-    <section id="seleccionar-mascota">
-        <h2>Elige tu mascota:</h2>
+        <section id="seleccionar-mascota">
+            <h2>Elige tu mascota:</h2>
 
-        <input type="radio" name="mascota" id="Hipodoge">
-        <label for="Hipodoge">Hipodoge</label>  
-        <input type="radio" name="mascota" id="Capipego">
-        <label for="Capipego">Capipego</label>
-        <input type="radio" name="mascota" id="Ratigueya">
-        <label for="Ratigueya">Ratigueya</label>
-        <!-- <input type="radio" name="mascota" id="Langostelvis"> 
-        <input type="radio" name="mascota" id="Tucapalma">
-        <input type="radio" name="mascota" id="Pydos"> -->
-        <button>Seleccionar</button>
+            <input type="radio" name="mascota" id="Hipodoge">
+            <label for="Hipodoge">Hipodoge</label>  
+            <input type="radio" name="mascota" id="Capipego">
+            <label for="Capipego">Capipego</label>
+            <input type="radio" name="mascota" id="Ratigueya">
+            <label for="Ratigueya">Ratigueya</label>
+            <!-- <input type="radio" name="mascota" id="Langostelvis"> 
+            <input type="radio" name="mascota" id="Tucapalma">
+            <input type="radio" name="mascota" id="Pydos"> -->
+            <button id="boton-mascota">Seleccionar</button>
 
-    </section>
+        </section>
 
-    <section id="seleccionar-ataque">
-        <h2>Elige tu ataque:</h2>
+        <section id="seleccionar-ataque">
+            <h2>Elige tu ataque:</h2>
 
-        <p>Tu mascota tiene <span>3</span> vidas</p>
-        <p>La mascota del enemigo tiene <span>3</span> vidas</p>
-        <p>
-            <button>Fuego 🔥</button>
-            <button>Agua 💧</button>
-            <button>Tierra 🌱</button>
-        </p>
-    </section>
+            <p>Tu mascota tiene <span>3</span> vidas</p>
+            <p>La mascota del enemigo tiene <span>3</span> vidas</p>
+            <p>
+                <button>Fuego 🔥</button>
+                <button>Agua 💧</button>
+                <button>Tierra 🌱</button>
+            </p>
+        </section>
 
-    <section id="mensajes">
-        <p>Tu mascota atacó con FUEGO, la mascota del enemigo atacó con Tierra - GANASTE 🎉</p>
-    </section>
+        <section id="mensajes">
+            <p>Tu mascota atacó con FUEGO, la mascota del enemigo atacó con Tierra - GANASTE 🎉</p>
+        </section>
 
-    <section id="reiniciar">
-        <button>Reiniciar</button>
-    </section>
-
-</body>
+        <section id="reiniciar">
+            <button>Reiniciar</button>
+        </section>
+        <script src="./mokepon.js"></script>
+    </body>
 </html>
