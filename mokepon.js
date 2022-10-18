@@ -21,21 +21,27 @@ function seleccionarMascotaJugador() {
     const mascotaJugador = document.getElementById('mascotaJugador')
 
     if(inputHipodoge.checked) {
-        // alert("Seleccionaste a Hipodoge");
         mascotaJugador.innerHTML = "Hipodoge";
     } 
     else if(inputCapipego.checked) {
-        // alert("Seleccionaste a Capipego");
         mascotaJugador.innerHTML = "Capipego";
     }
     else if(inputRatigueya.checked) {
-        // alert("Seleccionaste a Ratigueya");
         mascotaJugador.innerHTML = "Ratigueya";
     } else {
         alert("Por favor selecciona tu mascota");
     }
 
     seleccionaMascotaEnemigo();
+}
+
+function crearMensaje() {
+    let sectionMensajes = document.getElementById('mensajes')
+
+    let parrafo = document.createElement('p')
+    parrafo.innerHTML = 'Tu mascota atacó con ' + ataqueJugador + ' , la mascota del enemigo atacó con ' + ataqueEnemigo + ' RESULTADO PENDIENTE'
+
+    sectionMensajes.appendChild(parrafo)
 }
 
 function aleatorio(min, max) {
@@ -57,22 +63,18 @@ function seleccionaMascotaEnemigo() {
 
 function ataqueFuego() {
     ataqueJugador = 'FUEGO';
-    let spanAtaqueJugador = document.getElementById('ataque-jugador');
-    spanAtaqueJugador.innerHTML = ataqueJugador;
-    ataqueAleatorioEnemigo();
+    let spanAtaqueJugador = document.getElementById('ataque-jugador');    ataqueAleatorioEnemigo();
 }
 
 function ataqueAgua() {
     ataqueJugador = 'AGUA';
     let spanAtaqueJugador = document.getElementById('ataque-jugador');
-    spanAtaqueJugador.innerHTML = ataqueJugador;
     ataqueAleatorioEnemigo();
 }
 
 function ataqueTierra() {
     ataqueJugador = 'TIERRA';
     let spanAtaqueJugador = document.getElementById('ataque-jugador');
-    spanAtaqueJugador.innerHTML = ataqueJugador;
     ataqueAleatorioEnemigo();
 }
 
@@ -86,6 +88,8 @@ function ataqueAleatorioEnemigo() {
     } else {
         ataqueEnemigo = 'TIERRA'
     }
+
+    crearMensaje()
 }
 
 
