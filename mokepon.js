@@ -1,5 +1,6 @@
 let ataqueJugador;
 let ataqueEnemigo;
+let resultado;
 
 function iniciarJuego() { 
     let botonMascotaJugador = document.getElementById("boton-mascota");
@@ -39,7 +40,7 @@ function crearMensaje() {
     let sectionMensajes = document.getElementById('mensajes')
 
     let parrafo = document.createElement('p')
-    parrafo.innerHTML = 'Tu mascota atacó con ' + ataqueJugador + ' , la mascota del enemigo atacó con ' + ataqueEnemigo + ' RESULTADO PENDIENTE'
+    parrafo.innerHTML = 'Tu mascota atacó con ' + ataqueJugador + ' , la mascota del enemigo atacó con ' + ataqueEnemigo + ' - ' + resultado
 
     sectionMensajes.appendChild(parrafo)
 }
@@ -63,18 +64,16 @@ function seleccionaMascotaEnemigo() {
 
 function ataqueFuego() {
     ataqueJugador = 'FUEGO';
-    let spanAtaqueJugador = document.getElementById('ataque-jugador');    ataqueAleatorioEnemigo();
+    ataqueAleatorioEnemigo();
 }
 
 function ataqueAgua() {
     ataqueJugador = 'AGUA';
-    let spanAtaqueJugador = document.getElementById('ataque-jugador');
     ataqueAleatorioEnemigo();
 }
 
 function ataqueTierra() {
     ataqueJugador = 'TIERRA';
-    let spanAtaqueJugador = document.getElementById('ataque-jugador');
     ataqueAleatorioEnemigo();
 }
 
@@ -87,6 +86,26 @@ function ataqueAleatorioEnemigo() {
         ataqueEnemigo = 'AGUA'
     } else {
         ataqueEnemigo = 'TIERRA'
+    }
+
+    combate()
+}
+
+function combate() {
+    if(ataqueEnemigo == ataqueJugador) {
+        resultado = 'EMPATE'
+    } else if (ataqueEnemigo == 'FUEGO' && ataqueJugador == 'AGUA') {
+        resultado = 'GANASTE'
+    } else if (ataqueEnemigo == 'FUEGO' && ataqueJugador == 'TIERRA') {
+        resultado = 'PERDISTE'
+    } else if (ataqueEnemigo == 'AGUA' && ataqueJugador == 'TIERRA') {
+        resultado = 'GANASTE'
+    } else if (ataqueEnemigo == 'AGUA' && ataqueJugador == 'FUEGO') {
+        resultado = 'PERDISTE'
+    } else if (ataqueEnemigo == 'TIERRA' && ataqueJugador == 'FUEGO') {
+        resultado = 'GANASTE'
+    } else {
+        resultado = 'PERDISTE'
     }
 
     crearMensaje()
