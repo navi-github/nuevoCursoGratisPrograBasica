@@ -47,6 +47,15 @@ function crearMensaje() {
     sectionMensajes.appendChild(parrafo)
 }
 
+function crearMensajeFinal(resultadoFinal) {
+    let sectionMensajes = document.getElementById('mensajes')
+
+    let parrafo = document.createElement('p')
+    parrafo.innerHTML = resultadoFinal
+
+    sectionMensajes.appendChild(parrafo)
+}
+
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -126,7 +135,16 @@ function combate() {
     }
 
     crearMensaje()
+
+    revisarVidas()
 }
 
+function revisarVidas() {
+    if (vidasEnemigo == 0) {
+        crearMensajeFinal("FELICITACIONES, GANASTE")
+    } else if (vidasJugador == 0) {
+        crearMensajeFinal("LO SIENTO, PERDISTE")
+    } 
+}
 
 window.addEventListener('load',  iniciarJuego)
