@@ -5,6 +5,9 @@ let vidasEnemigo = 3;
 let vidasJugador = 3;
 
 function iniciarJuego() { 
+    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
+    sectionSeleccionarAtaque.style.display = 'none';
+
     let botonMascotaJugador = document.getElementById('boton-mascota');
     botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador);
 
@@ -20,6 +23,12 @@ function iniciarJuego() {
 }
 
 function seleccionarMascotaJugador() {
+    let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota');
+    sectionSeleccionarMascota.style.display = 'none';
+
+    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
+    sectionSeleccionarAtaque.style.display = 'block';
+
     const inputHipodoge = document.getElementById('Hipodoge');
     const inputCapipego = document.getElementById('Capipego');
     const inputRatigueya = document.getElementById('Ratigueya');
