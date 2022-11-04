@@ -1,0 +1,25 @@
+.titulo {
+    color: lightseagreen;
+    width: 310px;
+    height: 50px;
+    background-color: beige;
+}
+
+label {
+    background-color: teal;
+    width: 310px;
+    color: white;
+}
+
+input {
+    background-color: aqua;
+    width: 310px;
+    height: 50px;
+}
+
+button {
+    background-color: blueviolet;
+    border-radius: 10%;
+    width: 310px;
+    height: 50px;
+}
