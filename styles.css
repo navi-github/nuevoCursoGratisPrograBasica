@@ -1,25 +1,57 @@
-.titulo {
-    color: lightseagreen;
-    width: 310px;
-    height: 50px;
-    background-color: beige;
-}
-
 body {
-    height: 100vh;
+    font-family: 'Ubuntu', 'sans-serif';
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    background-color: #041562;
 }
 
 #seleccionar-mascota {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    margin: 12px
 }
 
-#reiniciar {
+.titulo {
+    color: white;
+}
+
+.subtitulo {
+    color: hotpink; 
+}
+
+.tarjetas {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    color: white;
+}
+
+.tarjeta-mokepon {
+    width: 100px;
+    height: 100px;
+    background: cyan;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    color: white;
+    margin: 12px
+}
+
+.tarjeta-mokepon p {
+    margin: 4px;
+}
+
+.tarjeta-mokepon img {
+    width: 80px;
+}
+
+input {
+    display: none;
 }
