@@ -3,7 +3,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #041562;
+    background-color: #ffca00;
+    background-image: url(./assets/273289.jpg);
+    background-repeat: no-repeat;
+    background-size: 100vw;
 }
 
 #seleccionar-mascota {
@@ -50,6 +53,17 @@ body {
 
 .tarjeta-mokepon img {
     width: 80px;
+}
+
+#boton-mascota {
+    margin: 20px;
+    width: 180px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid wheat;
+    font-family: 'Ubuntu', 'sans-serif';
 }
 
 input {
