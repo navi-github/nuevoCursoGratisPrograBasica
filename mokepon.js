@@ -27,7 +27,7 @@ function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = 'none';
 
     let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
-    sectionSeleccionarAtaque.style.display = 'block';
+    sectionSeleccionarAtaque.style.display = 'flex';
 
     const inputHipodoge = document.getElementById('Hipodoge');
     const inputCapipego = document.getElementById('Capipego');
