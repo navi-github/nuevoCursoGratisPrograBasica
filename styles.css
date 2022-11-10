@@ -86,3 +86,15 @@ input {
     color: white;
     font-family: 'Ubuntu', 'sans-serif';
 }
+
+#mensajes {
+    width: 280px;
+    background-color: rgb(11, 141, 24);
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
