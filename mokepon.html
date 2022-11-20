@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="./mokepon.js"></script>
-        <link rel="stylesheet" href="./styles.css">
+        <script src="./assets/mokepon.js"></script>
+        <link rel="stylesheet" href="./assets/styles.css">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
         <title>Mokepon</title>  
@@ -49,6 +49,7 @@
             <div>
                 <section id="mensajes">
                     <p id="resultado-final">Empieza el combate</p>
+                    <p id="div-resultado"></p>
                 </section>
                 
                 <section id="reiniciar">
@@ -56,12 +57,18 @@
                 </section>
             </div>
 
-            <div>
-                <p id="div-resultado"></p>
-                <p id="ataques-jugador"></p>
-                <p id="ataques-enemigo"></p>
-                <p>Tu mascota <span id="mascotaJugador"></span> tiene <span id="vidas-jugador">3</span> vidas</p>
-                <p>La mascota <span id="mascotaEnemigo"></span> del enemigo tiene <span id="vidas-enemigo">3</span> vidas</p>
+            <div class="ataques">
+                <div>
+                    <p id="vidas-jugador">3</p>
+                    <p id="mascotaJugador"></p>
+                    <p id="ataques-jugador"></p>
+                </div>
+
+                <div>
+                    <p id="vidas-enemigo">3</p>
+                    <p id="mascotaEnemigo"></p>
+                    <p id="ataques-enemigo"></p>
+                </div> 
             </div>
         </section>
     </body>
