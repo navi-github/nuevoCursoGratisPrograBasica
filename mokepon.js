@@ -5,9 +5,6 @@ const botonAgua = document.getElementById('boton-agua');
 const botonTierra = document.getElementById('boton-tierra');
 const botonReiniciar = document.getElementById('boton-reiniciar');
 const sectionSeleccionarMascota = document.getElementById('seleccionar-mascota');
-const inputHipodoge = document.getElementById('Hipodoge');
-const inputCapipego = document.getElementById('Capipego');
-const inputRatigueya = document.getElementById('Ratigueya');
 const mascotaJugador = document.getElementById('mascotaJugador');
 const sectionMensajes = document.getElementById('div-resultado');
 const sectionAtaquesJugador = document.getElementById('ataques-jugador');
@@ -20,6 +17,9 @@ const contenedorTarjetas = document.getElementById('contenedor-tarjetas');
 let mokepones = []
 let ataqueJugador;
 let opcionDeMokepones;
+let inputHipodoge; 
+let inputCapipepo; 
+let inputRatigueya;
 let ataqueEnemigo;
 let resultado;
 let vidasEnemigo = 3;
@@ -69,12 +69,16 @@ function iniciarJuego() {
 
     mokepones.forEach((mokepon) => {
         opcionDeMokepones = `
-            <input type="radio" name="mascota" id=${mokepon.nombre}/>
+            <input type="radio" name="mascota" id=${mokepon.nombre} />
             <label class="tarjeta-mokepon" for=${mokepon.nombre}><p>${mokepon.nombre}</p>
                 <img src="${mokepon.imagen}" alt=${mokepon.nombre}>
             </label>
         `;
         contenedorTarjetas.innerHTML += opcionDeMokepones;
+
+        inputHipodoge = document.getElementById('Hipodoge');
+        inputCapipepo = document.getElementById('Capipepo');
+        inputRatigueya = document.getElementById('Ratigueya');
     })
 
     botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador);
@@ -88,13 +92,13 @@ function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = 'none';
     sectionSeleccionarAtaque.style.display = 'flex';
     if(inputHipodoge.checked) {
-        mascotaJugador.innerHTML = "Hipodoge";
+        mascotaJugador.innerHTML = inputHipodoge.id;
     } 
-    else if(inputCapipego.checked) {
-        mascotaJugador.innerHTML = "Capipego";
+    else if(inputCapipepo.checked) {
+        mascotaJugador.innerHTML = inputCapipepo.id;
     }
     else if(inputRatigueya.checked) {
-        mascotaJugador.innerHTML = "Ratigueya";
+        mascotaJugador.innerHTML = inputRatigueya.id;
     } else {
         alert("Por favor selecciona tu mascota");
     }
@@ -139,7 +143,7 @@ function seleccionaMascotaEnemigo() {
     if (mascotaAleatoriaEnemigo == 1) { 
         mascotaEnemigo.innerHTML = "Hipodoge";
     } else if (mascotaAleatoriaEnemigo == 2) {
-        mascotaEnemigo.innerHTML = "Capipego";
+        mascotaEnemigo.innerHTML = "Capipepo";
     } else {
         mascotaEnemigo.innerHTML = "Ratigueya";
     }
