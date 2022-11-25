@@ -37,6 +37,7 @@ let victoriasEnemigo = 0;
 let indexAtaqueJugador;
 let indexAtaqueEnemigo;
 let lienzo = mapa.getContext('2d');
+let intervalo;
 
 class Mokepon {
     constructor(nombre, imagen, vida) {
@@ -44,6 +45,14 @@ class Mokepon {
         this.imagen = imagen;
         this.vida = vida;
         this.ataques = [];
+        this.x = 20;
+        this.y = 30;
+        this.ancho = 80;
+        this.alto = 80;
+        this.mapaFoto = new Image();
+        this.mapaFoto.src = imagen
+        this.velocidadX = 0;
+        this.velocidadY = 0;
     }
 }
 
@@ -103,16 +112,11 @@ function iniciarJuego() {
 function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = 'none';
     // sectionSeleccionarAtaque.style.display = 'flex';
+    //Con la siguiente línea de código mostramos el mapa
     sectionVerMapa.style.display = 'flex';
-    let imagenDeCapipepo = new Image();
-    imagenDeCapipepo.src = capipepo.imagen;
-    lienzo.drawImage(
-        imagenDeCapipepo,
-        20,
-        40,
-        100,
-        100
-    )
+    //Con setInterval indicamos que es una función recurrente a ejecutar, con un tiempo de intervalo entre cada ejecución
+    intervalo = setInterval(pintarPersonaje, 50)
+
 
     if(inputHipodoge.checked) {
         mascotaJugador.innerHTML = inputHipodoge.id;
@@ -300,6 +304,41 @@ function revisarVidas() {
 
 function reiniciarJuego() {
     location.reload()
+}
+
+function pintarPersonaje() {
+    capipepo.x = capipepo.x + capipepo.velocidadX;
+    capipepo.y = capipepo.y + capipepo.velocidadY;
+    // Con clearRect limpiamos el mapa antes de pintar nuevamente a Capipepo
+    lienzo.clearRect(0,0, mapa.width, mapa.height)
+    lienzo.drawImage(
+        capipepo.mapaFoto,
+        capipepo.x,
+        capipepo.y,
+        capipepo.ancho,
+        capipepo.alto
+    )
+}
+
+function moverDerecha() {
+    capipepo.velocidadX = 5;
+}
+
+function moverIzquierda() {
+    capipepo.velocidadX = -5;
+}
+
+function moverArriba() {
+    capipepo.velocidadY = -5;
+}
+
+function moverAbajo() {
+    capipepo.velocidadY = 5;
+}
+
+function detenerMovimiento() {
+    capipepo.velocidadX = 0;
+    capipepo.velocidadY = 0;
 }
 
 window.addEventListener('load',  iniciarJuego)
