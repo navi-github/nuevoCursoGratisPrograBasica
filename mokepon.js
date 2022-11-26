@@ -43,25 +43,39 @@ let mapaBackground = new Image();
 mapaBackground.src = './assets/mokemap.png';
 
 class Mokepon {
-    constructor(nombre, imagen, vida) {
+    constructor(nombre, imagen, vida, fotoMapa, x = 10, y = 10) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.vida = vida;
         this.ataques = [];
-        this.x = 20;
-        this.y = 30;
-        this.ancho = 80;
-        this.alto = 80;
+        this.x = x;
+        this.y = y;
+        this.ancho = 40;
+        this.alto = 40;
         this.mapaFoto = new Image();
-        this.mapaFoto.src = imagen
+        this.mapaFoto.src = fotoMapa
         this.velocidadX = 0;
         this.velocidadY = 0;
     }
+
+    pintarMokepon() {
+        lienzo.drawImage(
+            this.mapaFoto,
+            this.x,
+            this.y,
+            this.ancho,
+            this.alto
+        )
+    }
 }
 
-let hipodoge = new Mokepon('Hipodoge', './assets/mokepons_mokepon_hipodoge_attack.webp', 5);
-let capipepo = new Mokepon('Capipepo', './assets/mokepons_mokepon_capipepo_attack.webp', 5);
-let ratigueya = new Mokepon('Ratigueya', './assets/mokepons_mokepon_ratigueya_attack.webp', 5);
+let hipodoge = new Mokepon('Hipodoge', './assets/mokepons_mokepon_hipodoge_attack.webp', 5, './assets/hipodoge.png');
+let capipepo = new Mokepon('Capipepo', './assets/mokepons_mokepon_capipepo_attack.webp', 5, './assets/capipepo.png');
+let ratigueya = new Mokepon('Ratigueya', './assets/mokepons_mokepon_ratigueya_attack.webp', 5, './assets/ratigueya.png');
+
+let hipodogeEnemigo = new Mokepon('Hipodoge', './assets/mokepons_mokepon_hipodoge_attack.webp', 5, './assets/hipodoge.png', 80, 120);
+let capipepoEnemigo = new Mokepon('Capipepo', './assets/mokepons_mokepon_capipepo_attack.webp', 5, './assets/capipepo.png', 150, 95);
+let ratigueyaEnemigo = new Mokepon('Ratigueya', './assets/mokepons_mokepon_ratigueya_attack.webp', 5, './assets/ratigueya.png', 200, 190);
 
 hipodoge.ataques.push(
     { nombre: '💧', id: 'boton-agua'},
@@ -308,12 +322,14 @@ function reiniciarJuego() {
 }
 
 function pintarCanvas() {
-    //Establecemos la velocidad en X y Y una vez presionadas las teclas
+    // Establecemos la velocidad en X y Y una vez presionadas las teclas
     mascotaJugadorObjeto.x = mascotaJugadorObjeto.x + mascotaJugadorObjeto.velocidadX;
     mascotaJugadorObjeto.y = mascotaJugadorObjeto.y + mascotaJugadorObjeto.velocidadY;
 
     // Con clearRect limpiamos el mapa antes de pintar nuevamente a Capipepo
     lienzo.clearRect(0,0, mapa.width, mapa.height);
+
+    // Aquí pintamos la imagen de fondo
     lienzo.drawImage(
         mapaBackground,
         0,
@@ -321,13 +337,11 @@ function pintarCanvas() {
         mapa.width,
         mapa.height
     )
-    lienzo.drawImage(
-        mascotaJugadorObjeto.mapaFoto,
-        mascotaJugadorObjeto.x,
-        mascotaJugadorObjeto.y,
-        mascotaJugadorObjeto.ancho,
-        mascotaJugadorObjeto.alto
-    )
+    // Aquí pintamos nuestro mokepon
+    mascotaJugadorObjeto.pintarMokepon();
+    hipodogeEnemigo.pintarMokepon();
+    capipepoEnemigo.pintarMokepon();
+    ratigueyaEnemigo.pintarMokepon();
 }
 
 function moverDerecha() {
