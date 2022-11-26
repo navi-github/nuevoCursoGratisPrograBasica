@@ -12,9 +12,10 @@ const spanVidasEnemigo = document.getElementById('vidas-enemigo');
 const contenedorTarjetas = document.getElementById('contenedor-tarjetas');
 const contenedorAtaques = document.getElementById('contenedor-de-ataques');
 const sectionVerMapa = document.getElementById('ver-mapa');
-const mapa = document.getElementById('mapa')
+const mapa = document.getElementById('mapa');
 
-let mokepones = []
+let mokepones = [];
+let mascotaJugadorObjeto = obtenerObjetoMascota();
 let ataqueJugador;
 let opcionDeMokepones;
 let inputHipodoge; 
@@ -38,6 +39,8 @@ let indexAtaqueJugador;
 let indexAtaqueEnemigo;
 let lienzo = mapa.getContext('2d');
 let intervalo;
+let mapaBackground = new Image();
+mapaBackground.src = './assets/mokemap.png';
 
 class Mokepon {
     constructor(nombre, imagen, vida) {
@@ -112,11 +115,6 @@ function iniciarJuego() {
 function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = 'none';
     // sectionSeleccionarAtaque.style.display = 'flex';
-    //Con la siguiente línea de código mostramos el mapa
-    sectionVerMapa.style.display = 'flex';
-    //Con setInterval indicamos que es una función recurrente a ejecutar, con un tiempo de intervalo entre cada ejecución
-    intervalo = setInterval(pintarPersonaje, 50)
-
 
     if(inputHipodoge.checked) {
         mascotaJugador.innerHTML = inputHipodoge.id;
@@ -134,6 +132,9 @@ function seleccionarMascotaJugador() {
     }
 
     extraerAtaques(mokeponJugador);
+    //Con la siguiente línea de código mostramos el mapa
+    sectionVerMapa.style.display = 'flex';
+    iniciarMapa();
     seleccionaMascotaEnemigo();
 }
 
@@ -306,39 +307,90 @@ function reiniciarJuego() {
     location.reload()
 }
 
-function pintarPersonaje() {
-    capipepo.x = capipepo.x + capipepo.velocidadX;
-    capipepo.y = capipepo.y + capipepo.velocidadY;
+function pintarCanvas() {
+    //Establecemos la velocidad en X y Y una vez presionadas las teclas
+    mascotaJugadorObjeto.x = mascotaJugadorObjeto.x + mascotaJugadorObjeto.velocidadX;
+    mascotaJugadorObjeto.y = mascotaJugadorObjeto.y + mascotaJugadorObjeto.velocidadY;
+
     // Con clearRect limpiamos el mapa antes de pintar nuevamente a Capipepo
-    lienzo.clearRect(0,0, mapa.width, mapa.height)
+    lienzo.clearRect(0,0, mapa.width, mapa.height);
     lienzo.drawImage(
-        capipepo.mapaFoto,
-        capipepo.x,
-        capipepo.y,
-        capipepo.ancho,
-        capipepo.alto
+        mapaBackground,
+        0,
+        0,
+        mapa.width,
+        mapa.height
+    )
+    lienzo.drawImage(
+        mascotaJugadorObjeto.mapaFoto,
+        mascotaJugadorObjeto.x,
+        mascotaJugadorObjeto.y,
+        mascotaJugadorObjeto.ancho,
+        mascotaJugadorObjeto.alto
     )
 }
 
 function moverDerecha() {
-    capipepo.velocidadX = 5;
+    mascotaJugadorObjeto.velocidadX = 5;
 }
 
 function moverIzquierda() {
-    capipepo.velocidadX = -5;
+    mascotaJugadorObjeto.velocidadX = -5;
 }
 
 function moverArriba() {
-    capipepo.velocidadY = -5;
+    mascotaJugadorObjeto.velocidadY = -5;
 }
 
 function moverAbajo() {
-    capipepo.velocidadY = 5;
+    mascotaJugadorObjeto.velocidadY = 5;
 }
 
 function detenerMovimiento() {
-    capipepo.velocidadX = 0;
-    capipepo.velocidadY = 0;
+    
+    mascotaJugadorObjeto.velocidadX = 0;
+    mascotaJugadorObjeto.velocidadY = 0;
+}
+
+function sePresionoUnaTecla(event) {
+    switch (event.key) {
+        case 'ArrowUp':
+            moverArriba();
+            break;
+        case 'ArrowDown':
+            moverAbajo();
+            break;
+        case 'ArrowLeft':
+            moverIzquierda();
+            break;
+        case 'ArrowRight':
+            moverDerecha();
+            break;
+        default:
+            break;
+    }
+}
+
+function iniciarMapa() {
+        // Establecemos el ancho y alto del mapa en pixeles
+        mapa.width = 800;
+        mapa.height = 600;
+        mascotaJugadorObjeto = obtenerObjetoMascota(mascotaJugador);
+
+        //Con setInterval indicamos que es una función recurrente a ejecutar, con un tiempo de intervalo entre cada ejecución
+        intervalo = setInterval(pintarCanvas, 50)
+
+        //Agregamos un escuchador de eventos para las teclas
+        window.addEventListener('keydown', sePresionoUnaTecla)
+        window.addEventListener('keyup', detenerMovimiento)
+}
+
+function obtenerObjetoMascota() {
+    for (let i = 0; i < mokepones.length; i++) {
+        if (mokeponJugador === mokepones[i].nombre) {
+            return mokepones[i];
+        }
+    }
 }
 
 window.addEventListener('load',  iniciarJuego)
