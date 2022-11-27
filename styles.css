@@ -123,11 +123,30 @@ input:checked + .tarjeta-mokepon {
     border: 2px solid white;
 }
 
+#ver-mapa button {
+    margin: 4px;
+    width: 80px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid wheat;
+    font-family: 'Ubuntu', 'sans-serif';
+}
+
 @media (max-width: 380px) {
     .tarjetas {
         display: flex;
         flex-direction: column;
         gap: 10px;
         color: white;
+    }
+}
+
+@media (max-width: 290px) {
+    #ver-mapa div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
