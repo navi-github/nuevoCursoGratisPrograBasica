@@ -42,6 +42,7 @@ let intervalo;
 let mapaBackground = new Image();
 mapaBackground.src = './assets/mokemap.png';
 
+// Aquí declaramos la clase Mokepon, con sus atributos y métodos
 class Mokepon {
     constructor(nombre, imagen, vida, fotoMapa, x = 10, y = 10) {
         this.nombre = nombre;
@@ -57,7 +58,7 @@ class Mokepon {
         this.velocidadX = 0;
         this.velocidadY = 0;
     }
-
+    // Lo siguiente son los métodos de la clase
     pintarMokepon() {
         lienzo.drawImage(
             this.mapaFoto,
@@ -342,6 +343,12 @@ function pintarCanvas() {
     hipodogeEnemigo.pintarMokepon();
     capipepoEnemigo.pintarMokepon();
     ratigueyaEnemigo.pintarMokepon();
+
+    if (mascotaJugadorObjeto.velocidadX !== 0 || mascotaJugadorObjeto.velocidadY !== 0) {
+        revisarColision(hipodogeEnemigo);
+        revisarColision(capipepoEnemigo);
+        revisarColision(ratigueyaEnemigo);
+    }
 }
 
 function moverDerecha() {
@@ -405,6 +412,32 @@ function obtenerObjetoMascota() {
             return mokepones[i];
         }
     }
+}
+
+function revisarColision(enemigo) {
+    // Tomamos las coordenadas del enemigo y las declaramos como una variable
+    let arribaEnemigo = enemigo.y;
+    let abajoEnemigo = enemigo.y + enemigo.alto;
+    let derechaEnemigo = enemigo.x + enemigo.ancho;
+    let izquierdaEnemigo = enemigo.x;
+
+    // Tomamos las coordenadas de nuestra mascota y las declaramos como una variable
+    let arribaMascota = mascotaJugadorObjeto.y;
+    let abajoMascota = mascotaJugadorObjeto.y + mascotaJugadorObjeto.alto;
+    let derechaMascota = mascotaJugadorObjeto.x + mascotaJugadorObjeto.ancho;
+    let izquierdaMascota = mascotaJugadorObjeto.x;
+
+    // Condicional para revisar que no existen colisiones
+    if (
+        abajoMascota < arribaEnemigo ||
+        arribaMascota > abajoEnemigo ||
+        derechaMascota < izquierdaEnemigo ||
+        izquierdaMascota > derechaEnemigo
+        ) {
+            return;
+    }
+    detenerMovimiento();
+    alert('Hay colisión con: ' + enemigo.nombre )
 }
 
 window.addEventListener('load',  iniciarJuego)
