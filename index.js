@@ -3,6 +3,8 @@ const cors = require('cors')
 
 const app = express();
 
+// Utilizamos el framework static
+app.use(express.static(`public`))
 // Utilizamos el framework cors
 app.use(cors());
 // Habilitamos la capacidad de recibir peticiones tipo POST

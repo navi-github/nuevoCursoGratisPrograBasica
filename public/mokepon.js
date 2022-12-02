@@ -170,8 +170,6 @@ function unirseAlJuego() {
 }
 
 function seleccionarMascotaJugador() {
-    sectionSeleccionarMascota.style.display = 'none';
-
     if(inputHipodoge.checked) {
         spanMascotaJugador.innerHTML = inputHipodoge.id;
         mascotaJugador = inputHipodoge.id;
@@ -185,7 +183,10 @@ function seleccionarMascotaJugador() {
         mascotaJugador = inputRatigueya.id;
     } else {
         alert("Por favor selecciona tu mascota");
+        // Utilizamos return para detener la ejecución de nuestro código
+        return
     }
+    sectionSeleccionarMascota.style.display = 'none';
 
     // Ejecutar función para enviar el mokepon (dato) hacia el BACKEND
     seleccionarMokepon(mascotaJugador);
